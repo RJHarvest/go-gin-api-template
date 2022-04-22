@@ -8,9 +8,11 @@ import (
   "github.com/RJHarvest/gin-api-template/routers/v1"
   "github.com/RJHarvest/gin-api-template/routers"
   "github.com/RJHarvest/gin-api-template/middlewares"
+  "github.com/RJHarvest/gin-api-template/config"
 )
 
 func main() {
+  port := config.GetConfig().Port
   postgresql.InitDB()
   router := gin.Default()
   router.Use(middlewares.CustomCors)
@@ -23,9 +25,9 @@ func main() {
     v1.InitRoutes(apiV1)
   }
 
-  err := router.Run(":5000")
+  err := router.Run(fmt.Sprintf(":%s",port))
   if err != nil {
     panic(fmt.Sprintf("ERROR: Failed to start server %v", err))
   }
-  log.Printf("Server in running on port: %d", 5000)
+  log.Printf("Server in running on port: %s", port)
 }
