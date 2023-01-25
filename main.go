@@ -4,16 +4,18 @@ import (
   "fmt"
   "log"
   "github.com/gin-gonic/gin"
-  "github.com/RJHarvest/gin-api-template/services/postgresql"
   "github.com/RJHarvest/gin-api-template/routers/v1"
   "github.com/RJHarvest/gin-api-template/routers"
   "github.com/RJHarvest/gin-api-template/middlewares"
   "github.com/RJHarvest/gin-api-template/config"
+  // Uncomment the package below if needed
+  // "github.com/RJHarvest/gin-api-template/services/postgresql"
 )
 
 func main() {
   port := config.GetConfig().Port
-  postgresql.InitDB()
+  // Uncomment the package below if PostgreSQL DB is needed
+  // postgresql.InitDB()
   router := gin.Default()
   router.Use(middlewares.CustomCors)
   api := router.Group("/api")
