@@ -3,12 +3,13 @@ package middlewares
 import (
   "time"
   "github.com/gin-contrib/cors"
+  "github.com/RJHarvest/gin-api-template/config"
 )
 
 var DefaultCors = cors.Default()
 var CustomCors = cors.New(cors.Config{
-  AllowOrigins:     []string{"https://foo.com"},
-  AllowMethods:     []string{"PUT", "PATCH"},
+  AllowOrigins:     config.GetConfig().CorsAllowOrigins,
+  AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
   AllowHeaders:     []string{"Origin"},
   ExposeHeaders:    []string{"Content-Length"},
   AllowCredentials: true,
